@@ -1,8 +1,13 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 
 <head>
-     <title>Penjualan</title>
+    <title>Penjualan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="background.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -18,8 +23,8 @@
     $query = mysqli_query($koneksi, $sql);
     ?>
 
-    <div>
-    <h1>Data Penjualan</h1>
+    <div class="container">
+        <h1>Data Penjualan</h1>
         <form action="new-penjualan.php" method="GET">
             <button type="submit">Tambah</button>
         </form>
@@ -44,30 +49,29 @@
                     <td><?= $penjualan["username"] ?></td>
                     <td><?= $penjualan["created_at"] ?></td>
                     <td>
-                    <form action="read-penjualan.php" method="GET">
+                        <form action="read-penjualan.php" method="GET">
                             <input type="hidden" name="id" value='<?= $penjualan["id"] ?>'>
-                            <button type="submit">Lihat</button> 
-                  </form>
+                            <button type="submit">Lihat</button>
+                        </form>
                     </td>
                     <td>
-                        <form action="delete-penjualan.php" method="POST"  onsubmit="return konfirmasi(this)">
-                        <input type="hidden" name="id" value='<?= $penjualan["id"] ?>'>
+                        <form action="delete-penjualan.php" method="POST" onsubmit="return konfirmasi(this)">
+                            <input type="hidden" name="id" value='<?= $penjualan["id"] ?>'>
                             <button type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
                 <?php $i++; ?>
-                <?php endwhile ?>
+            <?php endwhile ?>
         </table>
-    </div>  
+    </div>
     <script>
-    
-    function konfirmasi(form) {
-        formData = new FormData(form);
-        id =formData.get("id");
-        return confirm(`Hapus penjualan '${id}'?`);
-    }
-     </script>
+        function konfirmasi(form) {
+            formData = new FormData(form);
+            id = formData.get("id");
+            return confirm(`Hapus penjualan '${id}'?`);
+        }
+    </script>
 </body>
 
 </html>

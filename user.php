@@ -2,7 +2,16 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
+    <!-- Pustaka Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="background.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -10,19 +19,16 @@
 
     <?php
     if ($_SESSION["level"] != "admin") {
-       
         echo "Anda tidak dapat mengakses halaman ini";
         exit;
     }
 
     require "koneksi.php";
-
-    
     $sql = "SELECT * FROM user";
     $query = mysqli_query($koneksi, $sql);
     ?>
 
-    <div>
+    <div class="container">
         <h1>Data User</h1>
         <form action="new-user.php" method="GET">
             <button type="submit">Tambah</button>
@@ -36,8 +42,9 @@
                 <th>Diubah pada</th>
                 <th colspan="2">Aksi</th>
             </tr>
-          
+
             <?php $i = 1; ?>
+            </td>
             <?php while ($user = mysqli_fetch_array($query)) : ?>
                 <tr>
                     <td><?= $i ?></td>
@@ -63,13 +70,12 @@
         </table>
     </div>
     <script>
-        
         function konfirmasi(form) {
             formData = new FormData(form);
             id = formData.get("id");
-             return confirm(`Hapus user '${id}'`);
+            return confirm(`Hapus user '${id}'?`);
         }
-        </script>
+    </script>
 </body>
 
 </html>

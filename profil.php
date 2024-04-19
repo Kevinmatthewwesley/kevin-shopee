@@ -3,6 +3,11 @@
 
 <head>
     <title>Profil</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="background.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -20,10 +25,10 @@
     $query = mysqli_query($koneksi, $sql);
 
 
-     $user = mysqli_fetch_array($query);
-     ?>
+    $user = mysqli_fetch_array($query);
+    ?>
 
-     <div>
+    <div class="container">
         <form action="update-profil.php" method="POST">
             <h1>Profil</h1>
 
@@ -33,7 +38,7 @@
             <table>
                 <tr>
                     <td>Username</td>
-                    <td><input readonly type="text" name="username" value="<?= $user["username"]?>"></td>
+                    <td><input readonly type="text" name="username" value="<?= $user["username"] ?>"></td>
                 </tr>
                 <tr>
                     <td>Password Baru</td>
@@ -51,7 +56,7 @@
                 </tr>
             </table>
         </form>
-     </div>
+    </div>
 </body>
 
 </html>
